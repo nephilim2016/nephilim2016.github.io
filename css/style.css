@@ -586,6 +586,31 @@ html.show-mobile-nav .navbar-list {
   align-items: center;
   justify-content: center;
 }
+.social-icons-container {
+  display: flex;
+  align-items: center;
+}
+.qr-codes-container {
+  display: flex;
+  justify-content: center; /* Adjust to center the items */
+}
+.qr-codes-container {
+  display: flex;
+  justify-content: center; /* This will center the items in the container */
+  align-items: center; /* This will vertically align the items in case they have different heights */
+  gap: 10px; /* You can adjust this value to set the desired distance between the QR codes */
+}
+.qr-code {
+/* No need for flex: 1 if you want them to be closer; just let them take up as much space as needed */
+  text-align: center;
+}
+.qr-code img {
+  width: 100px; /* Adjust width as necessary, but make sure both QR codes are the same width for alignment */
+  height: 100px;
+}
+.qr-code figcaption {
+  margin-top: 8px;
+}
 .post-image {
   position: absolute;
   top: 0;
