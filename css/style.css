@@ -100,7 +100,7 @@
   }
 }
 ::-webkit-scrollbar {
-  display: none;
+  display: auto;
 }
 html,
 body,
@@ -773,6 +773,7 @@ html.show-mobile-nav .navbar-list {
   color: var(--theme-text-primary);
 }
 .markdown-body {
+  text-align: justify; /* Add this line to justify text */
   line-height: 2;
   color: var(--theme-text-primary);
 }
@@ -870,7 +871,7 @@ html.show-mobile-nav .navbar-list {
   font-weight: bold;
   border-bottom: 3px solid #ddd;
   padding-bottom: 0.5em;
-  text-align: left;
+  text-align: central;
 }
 .markdown-body table td {
   border-bottom: 1px solid #ddd;
