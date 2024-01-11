@@ -118,7 +118,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-01-11T12:09:53.680Z" itemprop="dateUpdated">2024-01-11</time>
+              <time  class="article-updated" datetime="2024-01-11T13:38:22.497Z" itemprop="dateUpdated">2024-01-11</time>
             </h2>
           
           
@@ -181,7 +181,7 @@
 <td style="text-align:left">rh_tag</td>
 <td style="text-align:center">-</td>
 <td style="text-align:center">00</td>
-<td style="text-align:center">2</td>
+<td style="text-align:center">02</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>unsigned short</code></td>
@@ -209,7 +209,7 @@
 <td style="text-align:left">rh_zero</td>
 <td style="text-align:center">-</td>
 <td style="text-align:center">08</td>
-<td style="text-align:center">2</td>
+<td style="text-align:center">02</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>float</code></td>
@@ -230,7 +230,7 @@
 <td style="text-align:left">rh_mpm</td>
 <td style="text-align:center">-</td>
 <td style="text-align:center">18</td>
-<td style="text-align:center">4</td>
+<td style="text-align:center">04</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>float</code></td>
@@ -251,7 +251,7 @@
 <td style="text-align:left">rh_npass</td>
 <td style="text-align:center">-</td>
 <td style="text-align:center">30</td>
-<td style="text-align:center">2</td>
+<td style="text-align:center">02</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>char[]</code></td>
@@ -438,7 +438,7 @@
 </tbody>
 </table>
 <p>In the ensuing discussion, we explore the data composition. Our initial step involves bypassing the offset, followed by reading the data in accordance with the data type specified by the ‘info[‘rh_bits’]’ value, as detailed in the Header Information. The data is then transformed into a two-dimensional array, aligned with the ‘info[‘rh_nsamp’]’ value, also mentioned in the Header Information. A crucial aspect to highlight is that the first row of this 2D data delineates the trace indices, while the second row is characterized by uniform values, as depicted in <a href="#figure1">Figure 1</a>. Consequently, to ensure a precise analysis, it is imperative to remove these initial two rows from the 2D data.</p>
-<figure id="figure1"><br>  <img src="/Figure/Part1Fig/Fig1.png" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Readed Using Python Code</figcaption><br></figure>
+<figure id="figure1"><br>  <img src="/Figure/Part1Fig/Fig1.png" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading Using Python Code</figcaption><br></figure>
 
 <p>Finally, as depicted in <a href="#figure2">Figure 2</a>, we successfully read the complete data. Following this, we delve into the specifics of data:</p>
 <ul>
