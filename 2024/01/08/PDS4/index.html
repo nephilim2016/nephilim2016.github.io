@@ -25,7 +25,7 @@
 
   
 
-  <title>GPR File Formats, Part 2 (MALA) | Zues GPR</title>
+  <title>GPR File Formats, Part 6 (PDS4) | Zues GPR</title>
 
   
 
@@ -58,7 +58,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(/Figure/Part2Fig/MALA.jpg)"></div>
+    <div class="post-image" style="background-image: url(/Figure/Part6Fig/PDS4.jpg)"></div>
   
 
   <!-- navbar -->
@@ -109,11 +109,11 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">GPR File Formats, Part 2 (MALA)</h1>
+          <h1 class="title-wrap">GPR File Formats, Part 6 (PDS4)</h1>
           <h2 class="title-sub-wrap">
             <strong>Zeus GPR</strong>
             <span>Submitted at</span>
-            <time  class="article-date" datetime="2024-01-04T17:00:00.000Z" itemprop="datePublished">2024-01-04</time>
+            <time  class="article-date" datetime="2024-01-08T17:00:00.000Z" itemprop="datePublished">2024-01-08</time>
           </h2>
           
           
@@ -148,158 +148,162 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="Understanding-GPR-File-Formats-Part-2-A-Comprehensive-Guide-to-MALA-Data-Reading-and-Writing-Methods"><a href="#Understanding-GPR-File-Formats-Part-2-A-Comprehensive-Guide-to-MALA-Data-Reading-and-Writing-Methods" class="headerlink" title="Understanding GPR File Formats, Part 2: A Comprehensive Guide to MALA Data Reading and Writing Methods"></a>Understanding GPR File Formats, Part 2: A Comprehensive Guide to MALA Data Reading and Writing Methods</h1><p><a target="_blank" rel="noopener" href="https://www.guidelinegeo.com/mala-ground-penetrating-radar-gpr/">MALÅ </a> is the worlds foremost provider of Ground Penetrating Radar (GPR) solutions, enabling professionals to interpret and transform complex subsurface data into clear, comprehensible visual representations. With a history of high-tech innovation going back to the 1930s, MALÅ technology allows faster, safer decisions to be made while reducing project costs and protecting public safety.</p>
-<h2 id="MALA-File-Format"><a href="#MALA-File-Format" class="headerlink" title="MALA File Format"></a>MALA File Format</h2><p>MALÅ’s GPR technology primarily employs the .RAD file format, along with .RD3/.RD7 file formats, for its data. An integral feature of MALÅ’s GPR data format is the separation of the header file, which contains metadata, from the actual data file. Key characteristics of this format include:<br>-Proprietary Nature: Exclusively designed for compatibility with MALÅ’s own hardware and software, this format ensures seamless integration and optimal performance.<br>-Header Information: Each data set is accompanied by a .RAD file, serving as a unique header. This file contains crucial metadata such as survey parameters, date, time, and geographic information, providing a comprehensive context for the data.<br>-Data Composition: A .RD3/.RD7 file typically contains raw radar data. They record the amplitude of the returned signals, offering a detailed depiction of the subsurface structures.<br>-Specialized Compatibility: To access and interpret these files, users predominantly utilize MALÅ’s proprietary software. Alternatively, other specialized GPR data processing software capable of deciphering these unique formats can also be employed.</p>
-<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In our upcoming discussion, we will delve into handling .RAD and .RD3/.RD7 files, specifically addressing their separate reading and writing processes. This approach is necessitated by the distinct storage of header information and data information in individual files. </p>
-<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>MALÅ’s data files are structured into two primary components: Header Information and Data Composition. The Header Information is formatted using string values, with each piece of data separated by colons (:). This organization is clearly outlined in <a href="#table1">Table 1</a> below.</p>
-<div align="center">Table 1: Data Type Specifications</div>
+        <h1 id="Understanding-GPR-File-Formats-Part-6-A-Comprehensive-Guide-to-PDS4-Data-Reading-Methods"><a href="#Understanding-GPR-File-Formats-Part-6-A-Comprehensive-Guide-to-PDS4-Data-Reading-Methods" class="headerlink" title="Understanding GPR File Formats, Part 6: A Comprehensive Guide to PDS4 Data Reading Methods"></a>Understanding GPR File Formats, Part 6: A Comprehensive Guide to PDS4 Data Reading Methods</h1><p>There has been a significant increase in the level of interest for subsurface prospecting of space bodies including the Moon and Mars in recent times. One notable activity is the Chang’e 4 lunar penetrating radar system deployed by the <a target="_blank" rel="noopener" href="https://clpds.bao.ac.cn/">China National Space</a> Administration to the far side of the moon in 2019. A lunar penetrating radar was mounted on the lunar vehicle called the Yutu rover. The Yutu rover drove around the landing site whilst the LPR collected subsurface radar data whilst it moved to different locations of the area. The LPR data collected during this activity was made publicly available for researchers to download part-way through the mission. This was to enable the global scientific community the opportunity to apply their own processing routines and methodologies and investigate what geological information of the moon’s subsurface can be extracted from the data.</p>
+<h2 id="PDS4-File-Format"><a href="#PDS4-File-Format" class="headerlink" title="PDS4 File Format"></a>PDS4 File Format</h2><p>The LPR data was encoded using the open PDS4 (Planetary Data System) protocol format developed by NASA. The PDS4 data protocol is an abstract format suitable for a wide range of data and sensor types where the actual decoding method is included as part of the downloaded data. Even though documentation regarding the PDS4 protocol is publicly available, the decoding of this data format can be complicated.</p>
+<p>The format consists of two key files for each data archive – a label file and data file. The label file is an XML formatted text file and contains the key information to be used to access and decode the raw information contained in the corresponding data archive file. In this case, the label has the file extension ‘2BL’. The data file is a binary encoded file and has the extension ‘2B’. Further information about the PDS4 format is available from <a target="_blank" rel="noopener" href="https://research.csiro.au/robotics/csiro-futures-space-roadmap/">Besse et al. (2018)</a>.</p>
+<h2 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h2><p>The radar antenna centre frequency for channel 1 was 60 MHz. Each channel 1 trace consisted of 8192 samples per trace with sampling period of 2.5 ns, which resulted in a time range of 20.48 usec. Similarly, the antenna centre frequency for channels 2A and 2B frequency was 500 MHz. Channels 2A and 2B have 2048 samples per trace with sampling period of 0.3125 ns resulting in a time range of 640 ns.</p>
+<p>The raw data can be extracted from the data files using a wide range of software coding packages. The data extraction process involves reading in the corresponding binary data file and decoding each parameter. The specific details regarding relevant parameters, start byte, number of bytes per parameter, endian format and data type for channel 1 is shown in <a href="#table1">Table 1</a>. The same information for channels 2A and 2B is shown in <a href="#table2">Table 2</a>. The key difference between the two is related to the fact that channel 1 has more samples per trace.</p>
+<div align="center">Table 1: Key Parameters for Channel 1</div>
 
 <table>
 <thead>
 <tr>
 <th style="text-align:left">Parameters</th>
-<th style="text-align:center">Discription</th>
+<th style="text-align:center">Data Types</th>
+<th style="text-align:center">File Object Start Position</th>
+<th style="text-align:center">Standard Size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">SAMPLES</td>
-<td style="text-align:center">samples per scan</td>
+<td style="text-align:left">FRAME_ID</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">00</td>
+<td style="text-align:center">04</td>
 </tr>
 <tr>
-<td style="text-align:left">FREQUENCY</td>
-<td style="text-align:center">-</td>
+<td style="text-align:left">Various</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">04</td>
+<td style="text-align:center">34</td>
 </tr>
 <tr>
-<td style="text-align:left">FREQUENCY STEPS</td>
-<td style="text-align:center">-</td>
+<td style="text-align:left">Reference X</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">38</td>
+<td style="text-align:center">04</td>
 </tr>
 <tr>
-<td style="text-align:left">SIGNAL POSITION</td>
-<td style="text-align:center">-</td>
+<td style="text-align:left">Reference Y</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">42</td>
+<td style="text-align:center">04</td>
 </tr>
 <tr>
-<td style="text-align:left">RAW SIGNAL POSITION</td>
-<td style="text-align:center">-</td>
+<td style="text-align:left">Reference Z</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">46</td>
+<td style="text-align:center">04</td>
 </tr>
 <tr>
-<td style="text-align:left">DISTANCE FLAG</td>
-<td style="text-align:center">-</td>
+<td style="text-align:left">Various</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">64</td>
 </tr>
 <tr>
-<td style="text-align:left">PROGRAM FLAG</td>
-<td style="text-align:center">-</td>
+<td style="text-align:left">Radar Trace</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">114</td>
+<td style="text-align:center">32768</td>
 </tr>
 <tr>
-<td style="text-align:left">EXTERNAL FLAG</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">TIME INTERVAL</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">DISTANCE INTERVAL</td>
-<td style="text-align:center">distance interval per trace</td>
-</tr>
-<tr>
-<td style="text-align:left">OPERATOR</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">CUSTOMER</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">SITE</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">ANTENNAS</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">ANTENNA ORIENTATION</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">ANTENNAS SEPARATION</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">COMMENT</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">TIMEWINDOW</td>
-<td style="text-align:center">time duration (ns)</td>
-</tr>
-<tr>
-<td style="text-align:left">STACKS</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">STACK EXPONENT</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">LAST TRACE</td>
-<td style="text-align:center">number of traces</td>
-</tr>
-<tr>
-<td style="text-align:left">STOP POSITION</td>
-<td style="text-align:center">starting measured position (m)</td>
-</tr>
-<tr>
-<td style="text-align:left">SYSTEM CALIBRATION</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">START POSITION</td>
-<td style="text-align:center">stoping measured position (m)</td>
+<td style="text-align:left">Quality</td>
+<td style="text-align:center">uint8</td>
+<td style="text-align:center">32882</td>
+<td style="text-align:center">1</td>
 </tr>
 </tbody>
 </table>
-<p>In the following section,  we explore the data composition. Our first step in this exploration is to identify the storage format of the GPR data, which can be determined by the file extension. Files with a .rd3 extension indicate that the data is stored in an int16 format, while those with a .rd7 extension signify an int32 format. Once identified, this data is then converted into a 2D array. This process aligns with the ‘info[‘samples’]’ value, a critical piece of information also detailed in the Header Information.</p>
-<p>Having successfully read the complete data, as illustrated in <a href="#figure1">Figure 1</a>, we now turn our attention to the specific characteristics of the data:<br>-The total spatial distance covered by the data is calculated using data.shape[1] * float(info[‘DISTANCE INTERVAL’]), which applies to the distance survey method.<br>-The time duration represented within the data is readily available from info[‘TIMEWINDOW’].<br>-Crucially, the relationship between the time duration and the depth is articulated through a specific equation. However, it’s important to note that this calculation requires the input of relative permittivity, a value that the user must provide.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</p>
-<figure id="figure1"><br>  <img src="/Figure/Part2Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading by Using Python Code</figcaption><br></figure>
+<p><br></p>
+<div align="center">Table 2: Key Parameters for Channels 2A and 2B</div>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameters</th>
+<th style="text-align:center">Data Types</th>
+<th style="text-align:center">File Object Start Position</th>
+<th style="text-align:center">Standard Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FRAME_ID</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">00</td>
+<td style="text-align:center">04</td>
+</tr>
+<tr>
+<td style="text-align:left">Various</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">04</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:left">Reference X</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">38</td>
+<td style="text-align:center">04</td>
+</tr>
+<tr>
+<td style="text-align:left">Reference Y</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">42</td>
+<td style="text-align:center">04</td>
+</tr>
+<tr>
+<td style="text-align:left">Reference Z</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">46</td>
+<td style="text-align:center">04</td>
+</tr>
+<tr>
+<td style="text-align:left">Various</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">64</td>
+</tr>
+<tr>
+<td style="text-align:left">Radar Trace</td>
+<td style="text-align:center">float16</td>
+<td style="text-align:center">114</td>
+<td style="text-align:center">8192</td>
+</tr>
+<tr>
+<td style="text-align:left">Quality</td>
+<td style="text-align:center">uint8</td>
+<td style="text-align:center">8306</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Note that Channel 1 containts 32883 bytes per trace and Channels 2A and 2B contain 8307 bytes per trace.<br>Once the data has been decoded, the radargram for a given data file can be obtained by concatenating each trace. Furthermore, all individual radargrams can be easily combined to form a complete radargram for all files from the LPR missions as indicated in <a href="#figure1">Figure 1</a>, <a href="#figure2">Figure 2</a> and <a href="#figure3">Figure 3</a>.</p>
+<figure id="figure1"><br>  <img src="/Figure/Part6Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Radargram for Segmented Channel 1 Data</figcaption><br></figure>
+
+<figure id="figure2"><br>  <img src="/Figure/Part6Fig/Fig2.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Radargram for Segmented Channel 2A Data</figcaption><br></figure>
+
+<figure id="figure3"><br>  <img src="/Figure/Part6Fig/Fig3.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 3: Radargram for Segmented Channel 2B Data</figcaption><br></figure>
 
 <p>The principal Python code, essential for reading these files, can be found in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We encourage you to join the channel to access this code and engage with a community of like-minded individuals.</p>
-<h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>Reversing the data reading process opens the door to efficiently writing data back into MALÅ files. It’s imperative to understand that data designated for writing needs to undergo a format transformation – specifically, from a floating-point format to an integer format. Furthermore, the data type selected for writing must align precisely with the requirements dictated by the file extension. </p>
-<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>Ultimately, we are pleased to showcase a selection of our GPR datasets, amassing over 80 sets in total, meticulously gathered using MALÅ radar system. This extensive dataset is available for download from our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>.</p>
-<figure id="figure2"><br>  <img src="/Figure/Part2Fig/Gallery.jpg" width="800" height="auto" alt="Gallery" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Gallery</figcaption><br></figure>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>We’re excited to present an extensive collection of GPR datasets, notably the Chang’e 4 LPR data, amassing over 141 GB, downloaded from the <a target="_blank" rel="noopener" href="https://clpds.bao.ac.cn/">China National Space</a>. For those interested in exploring this vast dataset and the Python code used for its decoding, we invite you to join our  <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a> where these resources are available for download.</p>
+
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="/Figure/Part3Fig/IMPULSE.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2024/01/05/IMPULSE/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 3 (IMPULSE)</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="/Figure/Part1Fig/GSSI.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="/Figure/Part5Fig/IDS.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2024/01/03/GSSI/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 1 (GSSI)</h2>
+        <a href="/2024/01/07/IDS/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 5 (IDS)</h2>
         </a>
       
       <div class="card-text--row">Older</div>

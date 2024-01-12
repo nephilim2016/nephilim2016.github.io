@@ -25,7 +25,7 @@
 
   
 
-  <title>GPR File Formats, Part 6 (PDS4) | Zues GPR</title>
+  <title>GPR File Formats, Part 3 (IMPULSE) | Zues GPR</title>
 
   
 
@@ -58,7 +58,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(/Figure/Part6Fig/PDS4.jpg)"></div>
+    <div class="post-image" style="background-image: url(/Figure/Part3Fig/IMPULSE.jpg)"></div>
   
 
   <!-- navbar -->
@@ -109,17 +109,12 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">GPR File Formats, Part 6 (PDS4)</h1>
+          <h1 class="title-wrap">GPR File Formats, Part 3 (IMPULSE)</h1>
           <h2 class="title-sub-wrap">
             <strong>Zeus GPR</strong>
-            <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-07T17:00:00.000Z" itemprop="datePublished">2024-01-07</time>
+            <span>Submitted at</span>
+            <time  class="article-date" datetime="2024-01-05T17:00:00.000Z" itemprop="datePublished">2024-01-05</time>
           </h2>
-          
-            <h2 class="last-time">
-              <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-01-12T20:56:45.256Z" itemprop="dateUpdated">2024-01-12</time>
-            </h2>
           
           
           <ul class="wrap-list dark">
@@ -153,162 +148,238 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="Understanding-GPR-File-Formats-Part-6-A-Comprehensive-Guide-to-PDS4-Data-Reading-Methods"><a href="#Understanding-GPR-File-Formats-Part-6-A-Comprehensive-Guide-to-PDS4-Data-Reading-Methods" class="headerlink" title="Understanding GPR File Formats, Part 6: A Comprehensive Guide to PDS4 Data Reading Methods"></a>Understanding GPR File Formats, Part 6: A Comprehensive Guide to PDS4 Data Reading Methods</h1><p>There has been a significant increase in the level of interest for subsurface prospecting of space bodies including the Moon and Mars in recent times. One notable activity is the Chang’e 4 lunar penetrating radar system deployed by the <a target="_blank" rel="noopener" href="https://clpds.bao.ac.cn/">China National Space</a> Administration to the far side of the moon in 2019. A lunar penetrating radar was mounted on the lunar vehicle called the Yutu rover. The Yutu rover drove around the landing site whilst the LPR collected subsurface radar data whilst it moved to different locations of the area. The LPR data collected during this activity was made publicly available for researchers to download part-way through the mission. This was to enable the global scientific community the opportunity to apply their own processing routines and methodologies and investigate what geological information of the moon’s subsurface can be extracted from the data.</p>
-<h2 id="PDS4-File-Format"><a href="#PDS4-File-Format" class="headerlink" title="PDS4 File Format"></a>PDS4 File Format</h2><p>The LPR data was encoded using the open PDS4 (Planetary Data System) protocol format developed by NASA. The PDS4 data protocol is an abstract format suitable for a wide range of data and sensor types where the actual decoding method is included as part of the downloaded data. Even though documentation regarding the PDS4 protocol is publicly available, the decoding of this data format can be complicated.</p>
-<p>The format consists of two key files for each data archive – a label file and data file. The label file is an XML formatted text file and contains the key information to be used to access and decode the raw information contained in the corresponding data archive file. In this case, the label has the file extension ‘2BL’. The data file is a binary encoded file and has the extension ‘2B’. Further information about the PDS4 format is available from <a target="_blank" rel="noopener" href="https://research.csiro.au/robotics/csiro-futures-space-roadmap/">Besse et al. (2018)</a>.</p>
-<h2 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h2><p>The radar antenna centre frequency for channel 1 was 60 MHz. Each channel 1 trace consisted of 8192 samples per trace with sampling period of 2.5 ns, which resulted in a time range of 20.48 usec. Similarly, the antenna centre frequency for channels 2A and 2B frequency was 500 MHz. Channels 2A and 2B have 2048 samples per trace with sampling period of 0.3125 ns resulting in a time range of 640 ns.</p>
-<p>The raw data can be extracted from the data files using a wide range of software coding packages. The data extraction process involves reading in the corresponding binary data file and decoding each parameter. The specific details regarding relevant parameters, start byte, number of bytes per parameter, endian format and data type for channel 1 is shown in <a href="#table1">Table 1</a>. The same information for channels 2A and 2B is shown in <a href="#table2">Table 2</a>. The key difference between the two is related to the fact that channel 1 has more samples per trace.</p>
-<div align="center">Table 1: Key Parameters for Channel 1</div>
+        <h1 id="Understanding-GPR-File-Formats-Part-3-A-Comprehensive-Guide-to-IMPULSE-Data-Reading-and-Writing-Methods"><a href="#Understanding-GPR-File-Formats-Part-3-A-Comprehensive-Guide-to-IMPULSE-Data-Reading-and-Writing-Methods" class="headerlink" title="Understanding GPR File Formats, Part 3: A Comprehensive Guide to IMPULSE Data Reading and Writing Methods"></a>Understanding GPR File Formats, Part 3: A Comprehensive Guide to IMPULSE Data Reading and Writing Methods</h1><p>The <a target="_blank" rel="noopener" href="https://impulseradargpr.com/">IMPULSE</a> Ground Penetrating Radar (GPR) solutions represent the forefront of innovation, built upon the cutting-edge Real-Time Sampling (RTS) technology platform. These solutions stand out for their speed, offering exceptional bandwidth and dynamic range. Their modular design is tailored to meet specific user requirements, ensuring a perfect fit for various applications. With IMPULSE GPR solutions, you can expect a significant boost in productivity, thanks to the rapid collection of high-quality GPR data. </p>
+<h2 id="IMPULSE-File-Format"><a href="#IMPULSE-File-Format" class="headerlink" title="IMPULSE File Format"></a>IMPULSE File Format</h2><p>IMPULSE’s GPR technology employs two distinct file formats: the .iprh for header information and the .iprb for data. This separation, similar to MALÅ’s approach, key characteristics of this format include:<br>-Proprietary Nature: Tailored specifically for IMPULSE’s unique hardware and software, these formats facilitate a smooth, seamless integration, enhancing the overall user experience.<br>-Header Information: Accompanying every data set is a .iprh file. Packed with critical metadata like survey parameters, date, time, and geographic details, it sets the stage for a thorough understanding of the subsequent data.<br>-Data Composition: The .iprb files are the repositories of raw radar data. These files capture the amplitude of returned signals, painting an intricate of the subsurface structures.<br>-Specialized Compatibility: Accessing and interpreting these files typically requires IMPULSE’s proprietary software, designed to work hand-in-glove with these formats. However, the versatility of these formats also allows for their interpretation through other specialized GPR data processing software.</p>
+<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In our forthcoming segment, our focus will be on the distinct processes for reading and writing these files, a necessity dictated by their unique structure. Each file type, one for header information (.iprh) and the other for data (.iprb), is stored separately, emphasizing the need for a specialized approach to handling them. </p>
+<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>IMPULSE’s data files are organized into two fundamental components: Header Information and Data Composition. The Header Information is using string values to represent each data. These pieces of information are separated by colons (:), creating a clear and accessible format. For an in-depth understanding, <a href="#table1">Table 1</a> below provides a comprehensive breakdown of this structure, illustrating the precise organization and content of the Header Information in IMPULSE’s data files.</p>
+<div align="center">Table 1: Data Type Specifications</div>
 
 <table>
 <thead>
 <tr>
 <th style="text-align:left">Parameters</th>
-<th style="text-align:center">Data Types</th>
-<th style="text-align:center">File Object Start Position</th>
-<th style="text-align:center">Standard Size</th>
+<th style="text-align:center">Discription</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">FRAME_ID</td>
-<td style="text-align:center">uint32</td>
-<td style="text-align:center">00</td>
-<td style="text-align:center">04</td>
+<td style="text-align:left">HEADER VERSION</td>
+<td style="text-align:center">version of header</td>
 </tr>
 <tr>
-<td style="text-align:left">Various</td>
-<td style="text-align:center">N/A</td>
-<td style="text-align:center">04</td>
-<td style="text-align:center">34</td>
+<td style="text-align:left">DATA VERSION</td>
+<td style="text-align:center">version of data</td>
 </tr>
 <tr>
-<td style="text-align:left">Reference X</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">38</td>
-<td style="text-align:center">04</td>
+<td style="text-align:left">DATE</td>
+<td style="text-align:center">survey date</td>
 </tr>
 <tr>
-<td style="text-align:left">Reference Y</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">42</td>
-<td style="text-align:center">04</td>
+<td style="text-align:left">START TIME</td>
+<td style="text-align:center">start time of survey</td>
 </tr>
 <tr>
-<td style="text-align:left">Reference Z</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">46</td>
-<td style="text-align:center">04</td>
+<td style="text-align:left">STOP TIME</td>
+<td style="text-align:center">stop time of survey</td>
 </tr>
 <tr>
-<td style="text-align:left">Various</td>
-<td style="text-align:center">N/A</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">64</td>
+<td style="text-align:left">ANTENNA</td>
+<td style="text-align:center">central frequence of antenna (MHz)</td>
 </tr>
 <tr>
-<td style="text-align:left">Radar Trace</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">114</td>
-<td style="text-align:center">32768</td>
+<td style="text-align:left">ANTENNA SEPARATION</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td style="text-align:left">Quality</td>
-<td style="text-align:center">uint8</td>
-<td style="text-align:center">32882</td>
-<td style="text-align:center">1</td>
+<td style="text-align:left">SAMPLES</td>
+<td style="text-align:center">samples per scan</td>
+</tr>
+<tr>
+<td style="text-align:left">SIGNAL POSITION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CLIPPED SAMPLES</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RUNS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">MAX STACKS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">AUTOSTACKS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">FREQUENCY</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">TIMEWINDOW</td>
+<td style="text-align:center">time duration (ns)</td>
+</tr>
+<tr>
+<td style="text-align:left">LAST TRACE</td>
+<td style="text-align:center">number of traces</td>
+</tr>
+<tr>
+<td style="text-align:left">TRIG SOURCE</td>
+<td style="text-align:center">survey method</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME INTERVAL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">DISTANCE INTERVAL</td>
+<td style="text-align:center">distance interval per trace</td>
+</tr>
+<tr>
+<td style="text-align:left">USER DISTANCE INTERVAL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">STOP POSITION</td>
+<td style="text-align:center">distance of survey</td>
+</tr>
+<tr>
+<td style="text-align:left">WHEEL NAME</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">WHEEL CALIBRATION:</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ZERO LEVEL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">SOIL VELOCITY</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">PREPROCESSING</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">OPERATOR COMMENT</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA F/W</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA H/W</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA FPGA</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA SERIAL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA NAME</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">SOFTWARE VERSION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">POSITIONING</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CHANNELS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CHANNEL CONFIGURATION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CH_X_OFFSET</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CH_Y_OFFSET</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">MEASUREMENT DIRECTION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RELATIVE DIRECTION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RELATIVE DISTANCE</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RELATIVE START</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">START TEMPERATURE</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">STOP TEMPERATURE</td>
+<td style="text-align:center">-</td>
 </tr>
 </tbody>
 </table>
-<p><br></p>
-<div align="center">Table 2: Key Parameters for Channels 2A and 2B</div>
+<p>In the upcoming section of our discussion, we turn our attention to the details of data composition within IMPULSE’s GPR system. The initial step in this exploration involves deciphering the storage format of the GPR data. This is achieved by examining the info[‘DATA VERSION’] value within the info dictionary. A value of ‘16’ indicates that the data is stored in an int16 format, while a ‘32’ denotes an int32 format. Once the format is determined, the next step involves transforming this data into a 2D array. This transformation is carefully guided by two specific values: info[‘SAMPLES’] and info[‘LAST TRACE’] found in the info dictionary. </p>
+<p>Following our successful extraction of the complete dataset, as depicted in <a href="#figure1">Figure 1</a>, we now delve into detailing the specific characteristics of this data:<br>-The total spatial distance covered by the data is calculated through the formula data.shape[1] * float(info[‘DISTANCE INTERVAL’]), which applies to the distance survey method.<br>-The time duration represented within the data is conveniently obtained from info[‘TIMEWINDOW’].<br>-A pivotal aspect is the relationship between time duration and depth, which is defined by a specific equation. However, an important consideration in this calculation is the need for the input of relative permittivity. This crucial value, which must be supplied by the user, enables a more accurate interpretation of the depth information in relation to time.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</p>
+<figure id="figure1"><br>  <img src="/Figure/Part3Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading by Using Python Code</figcaption><br></figure>
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Parameters</th>
-<th style="text-align:center">Data Types</th>
-<th style="text-align:center">File Object Start Position</th>
-<th style="text-align:center">Standard Size</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">FRAME_ID</td>
-<td style="text-align:center">uint32</td>
-<td style="text-align:center">00</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left">Various</td>
-<td style="text-align:center">N/A</td>
-<td style="text-align:center">04</td>
-<td style="text-align:center">34</td>
-</tr>
-<tr>
-<td style="text-align:left">Reference X</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">38</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left">Reference Y</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">42</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left">Reference Z</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">46</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left">Various</td>
-<td style="text-align:center">N/A</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">64</td>
-</tr>
-<tr>
-<td style="text-align:left">Radar Trace</td>
-<td style="text-align:center">float16</td>
-<td style="text-align:center">114</td>
-<td style="text-align:center">8192</td>
-</tr>
-<tr>
-<td style="text-align:left">Quality</td>
-<td style="text-align:center">uint8</td>
-<td style="text-align:center">8306</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Note that Channel 1 containts 32883 bytes per trace and Channels 2A and 2B contain 8307 bytes per trace.<br>Once the data has been decoded, the radargram for a given data file can be obtained by concatenating each trace. Furthermore, all individual radargrams can be easily combined to form a complete radargram for all files from the LPR missions as indicated in <a href="#figure1">Figure 1</a>, <a href="#figure2">Figure 2</a> and <a href="#figure3">Figure 3</a>.</p>
-<figure id="figure1"><br>  <img src="/Figure/Part6Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Radargram for Segmented Channel 1 Data</figcaption><br></figure>
-
-<figure id="figure2"><br>  <img src="/Figure/Part6Fig/Fig2.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Radargram for Segmented Channel 2A Data</figcaption><br></figure>
-
-<figure id="figure3"><br>  <img src="/Figure/Part6Fig/Fig3.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 3: Radargram for Segmented Channel 2B Data</figcaption><br></figure>
-
-<p>The principal Python code, essential for reading these files, can be found in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We encourage you to join the channel to access this code and engage with a community of like-minded individuals.</p>
-<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>We’re excited to present an extensive collection of GPR datasets, notably the Chang’e 4 LPR data, amassing over 141 GB, downloaded from the <a target="_blank" rel="noopener" href="https://clpds.bao.ac.cn/">China National Space</a>. For those interested in exploring this vast dataset and the Python code used for its decoding, we invite you to join our  <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a> where these resources are available for download.</p>
-
+<p>The principal Python code for reading these files, is available in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We warmly invite you to join our channel, not just to access this valuable code, but also to connect with a community of enthusiasts and professionals in the field. It’s a space where like-minded individuals come together to share insights, exchange ideas, and collaborate on projects. </p>
+<h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>In our next discussion, we’ll explore how to reverse the data reading process, enabling the efficient writing of data back into IMPULSE files. A crucial aspect of this process is the need for a format transformation. Specifically, data prepared for writing should be converted from a floating-point format to an integer format. This step is essential to ensure the integrity and compatibility of the data with the IMPULSE system. Additionally, it’s vital to ensure that the data type chosen for writing corresponds exactly with the specifications outlined in the info[‘DATA VERSION’] value.</p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>We are excited to announce the availability of an extensive collection of GPR datasets on our platform. Over 20 datasets have been assembled using the IMPULSE GPR system, showcasing a wide array of subsurface imaging data. To access these datasets, we warmly invite you to visit our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>,  where they are readily available for download. </p>
+<figure id="figure2"><br>  <img src="/Figure/Part3Fig/Gallery.jpg" width="800" height="auto" alt="Gallery" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Gallery</figcaption><br></figure>
       </section>
 
       
       
         <nav class="article-nav">
           
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="/Figure/Part4Fig/EKKO.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2024/01/06/EKKO/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 4 (EKKO)</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="/Figure/Part5Fig/IDS.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="/Figure/Part2Fig/MALA.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2024/01/06/IDS/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 5 (IDS)</h2>
+        <a href="/2024/01/04/MALA/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 2 (MALA)</h2>
         </a>
       
       <div class="card-text--row">Older</div>
@@ -432,25 +503,7 @@
         
       
         
-          <a href="https://www.researchgate.net/profile/Xiangyu-Wang-76" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>ResearchGate</title><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></svg>
-          </a>
-        
       
-        
-          <a href="https://github.com/nephilim2016" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_100_4)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5808 20.2773 21.0498 21.7438 19.0074C23.2103 16.9651 23.9994 14.5143 24 12C24 5.37 18.63 0 12 0Z" fill="black"/>
-</g>
-<defs>
-<clipPath id="clip0_100_4">
-<rect width="24" height="24" fill="white"/>
-</clipPath>
-</defs>
-</svg>
-
-          </a>
         
       
         
@@ -477,9 +530,9 @@
     <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
 
     <p>
-      <a href="javascript:;" id="theme-light">🌞 浅色</a>
-      <a href="javascript:;" id="theme-dark">🌛 深色</a>
-      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+      <a href="javascript:;" id="theme-light">🌞 light</a>
+      <a href="javascript:;" id="theme-dark">🌛 dark</a>
+      <a href="javascript:;" id="theme-auto">🤖️ auto</a>
     </p>
 
   </div>
