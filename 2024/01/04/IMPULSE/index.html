@@ -113,12 +113,12 @@
           <h2 class="title-sub-wrap">
             <strong>Zeus GPR</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-05T17:00:00.000Z" itemprop="datePublished">2024-01-05</time>
+            <time  class="article-date" datetime="2024-01-04T17:00:00.000Z" itemprop="datePublished">2024-01-04</time>
           </h2>
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-01-05T02:46:06.396Z" itemprop="dateUpdated">2024-01-04</time>
+              <time  class="article-updated" datetime="2024-01-11T17:08:58.325Z" itemprop="dateUpdated">2024-01-11</time>
             </h2>
           
           
@@ -153,8 +153,206 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Stay tuned! We have some exciting developments in the pipeline that we can’t wait to share with you. Coming soon…</p>
+        <h1 id="Understanding-GPR-File-Formats-Part-3-A-Comprehensive-Guide-to-IMPULSE-Data-Reading-and-Writing-Methods"><a href="#Understanding-GPR-File-Formats-Part-3-A-Comprehensive-Guide-to-IMPULSE-Data-Reading-and-Writing-Methods" class="headerlink" title="Understanding GPR File Formats, Part 3: A Comprehensive Guide to IMPULSE Data Reading and Writing Methods"></a>Understanding GPR File Formats, Part 3: A Comprehensive Guide to IMPULSE Data Reading and Writing Methods</h1><p>The <a target="_blank" rel="noopener" href="https://impulseradargpr.com/">IMPULSE</a> Ground Penetrating Radar (GPR) solutions represent the forefront of innovation, built upon the cutting-edge Real-Time Sampling (RTS) technology platform. These solutions stand out for their speed, offering exceptional bandwidth and dynamic range. Their modular design is tailored to meet specific user requirements, ensuring a perfect fit for various applications. With IMPULSE GPR solutions, you can expect a significant boost in productivity, thanks to the rapid collection of high-quality GPR data. </p>
+<h2 id="IMPULSE-File-Format"><a href="#IMPULSE-File-Format" class="headerlink" title="IMPULSE File Format"></a>IMPULSE File Format</h2><p>IMPULSE’s GPR technology employs two distinct file formats: the .iprh for header information and the .iprb for data. This separation, similar to MALÅ’s approach, key characteristics of this format include:<br>-Proprietary Nature: Tailored specifically for IMPULSE’s unique hardware and software, these formats facilitate a smooth, seamless integration, enhancing the overall user experience.<br>-Header Information: Accompanying every data set is a .iprh file. Packed with critical metadata like survey parameters, date, time, and geographic details, it sets the stage for a thorough understanding of the subsequent data.<br>-Data Composition: The .iprb files are the repositories of raw radar data. These files capture the amplitude of returned signals, painting an intricate of the subsurface structures.<br>-Specialized Compatibility: Accessing and interpreting these files typically requires IMPULSE’s proprietary software, designed to work hand-in-glove with these formats. However, the versatility of these formats also allows for their interpretation through other specialized GPR data processing software.</p>
+<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In our forthcoming segment, our focus will be on the distinct processes for reading and writing these files, a necessity dictated by their unique structure. Each file type, one for header information (.iprh) and the other for data (.iprb), is stored separately, emphasizing the need for a specialized approach to handling them. </p>
+<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>IMPULSE’s data files are organized into two fundamental components: Header Information and Data Composition. The Header Information is using string values to represent each data. These pieces of information are separated by colons (:), creating a clear and accessible format. For an in-depth understanding, <a href="#table1">Table 1</a> below provides a comprehensive breakdown of this structure, illustrating the precise organization and content of the Header Information in IMPULSE’s data files.</p>
+<div align="center">Table 1: Data Type Specifications</div>
 
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameters</th>
+<th style="text-align:center">Discription</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HEADER VERSION</td>
+<td style="text-align:center">version of header</td>
+</tr>
+<tr>
+<td style="text-align:left">DATA VERSION</td>
+<td style="text-align:center">version of data</td>
+</tr>
+<tr>
+<td style="text-align:left">DATE</td>
+<td style="text-align:center">survey date</td>
+</tr>
+<tr>
+<td style="text-align:left">START TIME</td>
+<td style="text-align:center">start time of survey</td>
+</tr>
+<tr>
+<td style="text-align:left">STOP TIME</td>
+<td style="text-align:center">stop time of survey</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA</td>
+<td style="text-align:center">central frequence of antenna (MHz)</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA SEPARATION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">SAMPLES</td>
+<td style="text-align:center">samples per scan</td>
+</tr>
+<tr>
+<td style="text-align:left">SIGNAL POSITION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CLIPPED SAMPLES</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RUNS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">MAX STACKS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">AUTOSTACKS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">FREQUENCY</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">TIMEWINDOW</td>
+<td style="text-align:center">time duration (ns)</td>
+</tr>
+<tr>
+<td style="text-align:left">LAST TRACE</td>
+<td style="text-align:center">number of traces</td>
+</tr>
+<tr>
+<td style="text-align:left">TRIG SOURCE</td>
+<td style="text-align:center">survey method</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME INTERVAL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">DISTANCE INTERVAL</td>
+<td style="text-align:center">distance interval per trace</td>
+</tr>
+<tr>
+<td style="text-align:left">USER DISTANCE INTERVAL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">STOP POSITION</td>
+<td style="text-align:center">distance of survey</td>
+</tr>
+<tr>
+<td style="text-align:left">WHEEL NAME</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">WHEEL CALIBRATION:</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ZERO LEVEL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">SOIL VELOCITY</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">PREPROCESSING</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">OPERATOR COMMENT</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA F/W</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA H/W</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA FPGA</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA SERIAL</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ANTENNA NAME</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">SOFTWARE VERSION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">POSITIONING</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CHANNELS</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CHANNEL CONFIGURATION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CH_X_OFFSET</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">CH_Y_OFFSET</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">MEASUREMENT DIRECTION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RELATIVE DIRECTION</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RELATIVE DISTANCE</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">RELATIVE START</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">START TEMPERATURE</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">STOP TEMPERATURE</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<p>In the upcoming section of our discussion, we turn our attention to the details of data composition within IMPULSE’s GPR system. The initial step in this exploration involves deciphering the storage format of the GPR data. This is achieved by examining the info[‘DATA VERSION’] value within the info dictionary. A value of ‘16’ indicates that the data is stored in an int16 format, while a ‘32’ denotes an int32 format. Once the format is determined, the next step involves transforming this data into a 2D array. This transformation is carefully guided by two specific values: info[‘SAMPLES’] and info[‘LAST TRACE’] found in the info dictionary. </p>
+<figure id="figure1"><br>  <img src="/Figure/Part3Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading Using Python Code</figcaption><br></figure>
+
+<p>Following our successful extraction of the complete dataset, as depicted in Figure 1, we now delve into detailing the specific characteristics of this data:<br>-The total spatial distance covered by the data is calculated through the formula data.shape[1] * float(info[‘DISTANCE INTERVAL’]), which applies to the distance survey method.<br>-The time duration represented within the data is conveniently obtained from info[‘TIMEWINDOW’].<br>-A pivotal aspect is the relationship between time duration and depth, which is defined by a specific equation. However, an important consideration in this calculation is the need for the input of relative permittivity. This crucial value, which must be supplied by the user, enables a more accurate interpretation of the depth information in relation to time.</p>
+<p>The principal Python code for reading these files, is available in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We warmly invite you to join our channel, not just to access this valuable code, but also to connect with a community of enthusiasts and professionals in the field. It’s a space where like-minded individuals come together to share insights, exchange ideas, and collaborate on projects. </p>
+<h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>In our next discussion, we’ll explore how to reverse the data reading process, enabling the efficient writing of data back into IMPULSE files. A crucial aspect of this process is the need for a format transformation. Specifically, data prepared for writing should be converted from a floating-point format to an integer format. This step is essential to ensure the integrity and compatibility of the data with the IMPULSE system. Additionally, it’s vital to ensure that the data type chosen for writing corresponds exactly with the specifications outlined in the info[‘DATA VERSION’] value.</p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>We are excited to announce the availability of an extensive collection of GPR datasets on our platform. Over 20 datasets have been assembled using the IMPULSE GPR system, showcasing a wide array of subsurface imaging data. To access these datasets, we warmly invite you to visit our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>,  where they are readily available for download. </p>
+<figure id="figure2"><br>  <img src="/Figure/Part3Fig/Gallery.jpg" width="800" height="auto" alt="Gallery" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Gallery</figcaption><br></figure>
       </section>
 
       

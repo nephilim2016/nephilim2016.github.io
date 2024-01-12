@@ -118,7 +118,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-01-11T13:36:30.783Z" itemprop="dateUpdated">2024-01-11</time>
+              <time  class="article-updated" datetime="2024-01-11T17:04:10.285Z" itemprop="dateUpdated">2024-01-11</time>
             </h2>
           
           
@@ -154,122 +154,124 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h1 id="Understanding-GPR-File-Formats-Part-2-A-Comprehensive-Guide-to-MALA-Data-Reading-and-Writing-Methods"><a href="#Understanding-GPR-File-Formats-Part-2-A-Comprehensive-Guide-to-MALA-Data-Reading-and-Writing-Methods" class="headerlink" title="Understanding GPR File Formats, Part 2: A Comprehensive Guide to MALA Data Reading and Writing Methods"></a>Understanding GPR File Formats, Part 2: A Comprehensive Guide to MALA Data Reading and Writing Methods</h1><p><a target="_blank" rel="noopener" href="https://www.guidelinegeo.com/mala-ground-penetrating-radar-gpr/">MALÅ </a> is the worlds foremost provider of Ground Penetrating Radar (GPR) solutions, enabling professionals to interpret and transform complex subsurface data into clear, comprehensible visual representations. With a history of high-tech innovation going back to the 1930s, MALÅ technology allows faster, safer decisions to be made while reducing project costs and protecting public safety.</p>
-<h2 id="MALA-File-Format"><a href="#MALA-File-Format" class="headerlink" title="MALA File Format"></a>MALA File Format</h2><p>MALÅ’s GPR technology primarily employs the RAD file format, along with RD3/RD7 file formats, for its data. An integral feature of MALÅ’s GPR data format is the separation of the header file, which contains metadata, from the actual data file. Key characteristics of this format include:<br>-Proprietary Nature: Exclusively designed for compatibility with MALÅ’s own hardware and software, this format ensures seamless integration and optimal performance.<br>-Header Information: Each data set is accompanied by a .RAD file, serving as a unique header. This file contains crucial metadata such as survey parameters, date, time, and geographic information, providing a comprehensive context for the data.<br>-Data Composition: A RD3/RD7 file typically contains raw radar data. They record the amplitude of the returned signals, offering a detailed depiction of the subsurface structures.<br>-Specialized Compatibility: To access and interpret these files, users predominantly utilize MALÅ’s proprietary software. Alternatively, other specialized GPR data processing software capable of deciphering these unique formats can also be employed.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</p>
-<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In our upcoming discussion, we will delve into handling RAD and RD3/RD7 files, specifically addressing their separate reading and writing processes. This approach is necessitated by the distinct storage of header information and data information in individual files. </p>
-<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>MALÅ’s data files are structured into two primary components: Header Information and Data Composition. The Header Information is formatted using string values, with each piece of data separated by colons (:). This organization is clearly outlined in Table 1 below.</p>
+<h2 id="MALA-File-Format"><a href="#MALA-File-Format" class="headerlink" title="MALA File Format"></a>MALA File Format</h2><p>MALÅ’s GPR technology primarily employs the .RAD file format, along with .RD3/.RD7 file formats, for its data. An integral feature of MALÅ’s GPR data format is the separation of the header file, which contains metadata, from the actual data file. Key characteristics of this format include:<br>-Proprietary Nature: Exclusively designed for compatibility with MALÅ’s own hardware and software, this format ensures seamless integration and optimal performance.<br>-Header Information: Each data set is accompanied by a .RAD file, serving as a unique header. This file contains crucial metadata such as survey parameters, date, time, and geographic information, providing a comprehensive context for the data.<br>-Data Composition: A .RD3/.RD7 file typically contains raw radar data. They record the amplitude of the returned signals, offering a detailed depiction of the subsurface structures.<br>-Specialized Compatibility: To access and interpret these files, users predominantly utilize MALÅ’s proprietary software. Alternatively, other specialized GPR data processing software capable of deciphering these unique formats can also be employed.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</p>
+<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In our upcoming discussion, we will delve into handling .RAD and .RD3/.RD7 files, specifically addressing their separate reading and writing processes. This approach is necessitated by the distinct storage of header information and data information in individual files. </p>
+<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>MALÅ’s data files are structured into two primary components: Header Information and Data Composition. The Header Information is formatted using string values, with each piece of data separated by colons (:). This organization is clearly outlined in <a href="#table1">Table 1</a> below.</p>
+<div align="center">Table 1: Data Type Specifications</div>
+
 <table>
 <thead>
 <tr>
-<th>Parameters</th>
-<th>Discription</th>
+<th style="text-align:left">Parameters</th>
+<th style="text-align:center">Discription</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>SAMPLES</td>
-<td>samples per scan</td>
+<td style="text-align:left">SAMPLES</td>
+<td style="text-align:center">samples per scan</td>
 </tr>
 <tr>
-<td>FREQUENCY</td>
-<td>central frequency of attena</td>
+<td style="text-align:left">FREQUENCY</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>FREQUENCY STEPS</td>
-<td>-</td>
+<td style="text-align:left">FREQUENCY STEPS</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>SIGNAL POSITION</td>
-<td>-</td>
+<td style="text-align:left">SIGNAL POSITION</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>RAW SIGNAL POSITION</td>
-<td>-</td>
+<td style="text-align:left">RAW SIGNAL POSITION</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>DISTANCE FLAG</td>
-<td>-</td>
+<td style="text-align:left">DISTANCE FLAG</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>PROGRAM FLAG</td>
-<td>-</td>
+<td style="text-align:left">PROGRAM FLAG</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>EXTERNAL FLAG</td>
-<td>-</td>
+<td style="text-align:left">EXTERNAL FLAG</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>TIME INTERVAL</td>
-<td>-</td>
+<td style="text-align:left">TIME INTERVAL</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>DISTANCE INTERVAL</td>
-<td>distance interval per trace</td>
+<td style="text-align:left">DISTANCE INTERVAL</td>
+<td style="text-align:center">distance interval per trace</td>
 </tr>
 <tr>
-<td>OPERATOR</td>
-<td>-</td>
+<td style="text-align:left">OPERATOR</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>CUSTOMER</td>
-<td>-</td>
+<td style="text-align:left">CUSTOMER</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>SITE</td>
-<td>-</td>
+<td style="text-align:left">SITE</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>ANTENNAS</td>
-<td>-</td>
+<td style="text-align:left">ANTENNAS</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>ANTENNA ORIENTATION</td>
-<td>-</td>
+<td style="text-align:left">ANTENNA ORIENTATION</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>ANTENNAS SEPARATION</td>
-<td>-</td>
+<td style="text-align:left">ANTENNAS SEPARATION</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>COMMENT</td>
-<td>-</td>
+<td style="text-align:left">COMMENT</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>TIMEWINDOW</td>
-<td>time duration (ns)</td>
+<td style="text-align:left">TIMEWINDOW</td>
+<td style="text-align:center">time duration (ns)</td>
 </tr>
 <tr>
-<td>STACKS</td>
-<td>-</td>
+<td style="text-align:left">STACKS</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>STACK EXPONENT</td>
-<td>-</td>
+<td style="text-align:left">STACK EXPONENT</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>LAST TRACE</td>
-<td>number of traces</td>
+<td style="text-align:left">LAST TRACE</td>
+<td style="text-align:center">number of traces</td>
 </tr>
 <tr>
-<td>STOP POSITION</td>
-<td>starting measured position (m)</td>
+<td style="text-align:left">STOP POSITION</td>
+<td style="text-align:center">starting measured position (m)</td>
 </tr>
 <tr>
-<td>SYSTEM CALIBRATION</td>
-<td>-</td>
+<td style="text-align:left">SYSTEM CALIBRATION</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td>START POSITION</td>
-<td>stoping measured position (m)</td>
+<td style="text-align:left">START POSITION</td>
+<td style="text-align:center">stoping measured position (m)</td>
 </tr>
 </tbody>
 </table>
 <p>In the following section,  we explore the data composition. Our first step in this exploration is to identify the storage format of the GPR data, which can be determined by the file extension. Files with a .rd3 extension indicate that the data is stored in an int16 format, while those with a .rd7 extension signify an int32 format. Once identified, this data is then converted into a 2D array. This process aligns with the ‘info[‘samples’]’ value, a critical piece of information also detailed in the Header Information.</p>
-<p>Having successfully read the complete data, as illustrated in Figure 1, we now turn our attention to the specific characteristics of the data:<br>-The total spatial distance covered by the data is calculated using data.shape[1] * float(info[‘distance_interval’]), which applies to the distance survey method.<br>-The time duration represented within the data is readily available from info[‘timewindow’].<br>-Crucially, the relationship between the time duration and the depth is articulated through a specific equation. However, it’s important to note that this calculation requires the input of relative permittivity, a value that the user must provide.</p>
+<p>Having successfully read the complete data, as illustrated in Figure 1, we now turn our attention to the specific characteristics of the data:<br>-The total spatial distance covered by the data is calculated using data.shape[1] * float(info[‘DISTANCE INTERVAL’]), which applies to the distance survey method.<br>-The time duration represented within the data is readily available from info[‘TIMEWINDOW’].<br>-Crucially, the relationship between the time duration and the depth is articulated through a specific equation. However, it’s important to note that this calculation requires the input of relative permittivity, a value that the user must provide.</p>
 <figure id="figure1"><br>  <img src="/Figure/Part2Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading Using Python Code</figcaption><br></figure>
 
 <p>The principal Python code, essential for reading these files, can be found in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We encourage you to join the channel to access this code and engage with a community of like-minded individuals.</p>
 <h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>Reversing the data reading process opens the door to efficiently writing data back into MALÅ files. It’s imperative to understand that data designated for writing needs to undergo a format transformation – specifically, from a floating-point format to an integer format. Furthermore, the data type selected for writing must align precisely with the requirements dictated by the file extension. </p>
-<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>Ultimately, we are pleased to showcase a selection of our GPR datasets, amassing over 500 sets in total, meticulously gathered using MALÅ radar system. This extensive dataset is available for download from our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>.</p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>Ultimately, we are pleased to showcase a selection of our GPR datasets, amassing over 80 sets in total, meticulously gathered using MALÅ radar system. This extensive dataset is available for download from our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>.</p>
 <figure id="figure2"><br>  <img src="/Figure/Part2Fig/Gallery.jpg" width="800" height="auto" alt="Gallery" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Gallery</figcaption><br></figure>
       </section>
 
@@ -284,7 +286,7 @@
     
     <div class="card-text">
       
-        <a href="/2024/01/05/IMPULSE/" itemprop="url">
+        <a href="/2024/01/04/IMPULSE/" itemprop="url">
           <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 3 (IMPULSE)</h2>
         </a>
       
