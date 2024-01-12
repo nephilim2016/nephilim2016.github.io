@@ -25,7 +25,7 @@
 
   
 
-  <title>GPR File Formats, Part 1 (GSSI) | Zues GPR</title>
+  <title>GPR File Formats, Part 4 (EKKO) | Zues GPR</title>
 
   
 
@@ -58,7 +58,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(/Figure/Part1Fig/GSSI.jpg)"></div>
+    <div class="post-image" style="background-image: url(/Figure/Part4Fig/EKKO.jpg)"></div>
   
 
   <!-- navbar -->
@@ -109,16 +109,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">GPR File Formats, Part 1 (GSSI)</h1>
+          <h1 class="title-wrap">GPR File Formats, Part 4 (EKKO)</h1>
           <h2 class="title-sub-wrap">
             <strong>Zeus GPR</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-03T17:00:00.000Z" itemprop="datePublished">2024-01-03</time>
+            <time  class="article-date" datetime="2024-01-05T17:00:00.000Z" itemprop="datePublished">2024-01-05</time>
           </h2>
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-01-12T13:52:45.705Z" itemprop="dateUpdated">2024-01-12</time>
+              <time  class="article-updated" datetime="2024-01-12T14:01:08.543Z" itemprop="dateUpdated">2024-01-12</time>
             </h2>
           
           
@@ -153,329 +153,135 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="Understanding-GPR-File-Formats-Part-1-A-Comprehensive-Guide-to-GSSI-Data-Reading-and-Writing-Methods"><a href="#Understanding-GPR-File-Formats-Part-1-A-Comprehensive-Guide-to-GSSI-Data-Reading-and-Writing-Methods" class="headerlink" title="Understanding GPR File Formats, Part 1: A Comprehensive Guide to GSSI Data Reading and Writing Methods"></a>Understanding GPR File Formats, Part 1: A Comprehensive Guide to GSSI Data Reading and Writing Methods</h1><p><a target="_blank" rel="noopener" href="https://www.linkedin.com/company/geophysical-survey-systems-inc.">Geophysical Survey Systems, Inc. (GSSI)</a> is a world leader in the development, manufacture, and sale of ground penetrating radar (GPR) equipment, primarily used for geophysical, geological, environmental, and forensic investigations. GSSI’s GPR systems are well-regarded for their versatility, reliability, and accuracy in subsurface probing and mapping.</p>
-<h2 id="GSSI-File-Format"><a href="#GSSI-File-Format" class="headerlink" title="GSSI File Format"></a>GSSI File Format</h2><p>The primary file format used by GSSI for GPR data is the .DZT file format. Key characteristics of this format include:</p>
-<ul>
-<li>Proprietary Nature: The .DZT format is specific to GSSI and is designed to work seamlessly with their software and hardware.</li>
-<li>Header Information: Each file includes a header with metadata, such as survey parameters, date, time, and geographic information.</li>
-<li>Data Composition: A .DZT file typically contains raw radar data, including the amplitude of the returned signal, which reflects subsurface structures.</li>
-<li>Compatibility: To read or analyze .DZT files, users generally rely on GSSI’s RADAN software or other specialized GPR data processing software capable of interpreting the .DZT format.</li>
-</ul>
-<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In this discussion, we primarily concentrate on the methodologies for reading and writing .DZT files, without delving into the details of .DZX files.</p>
-<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>The .DZT data files are comprised of two key components: Header Information and Data Composition. The format of the Header Information is detailed in the following <a href="#table1">Table 1</a>.</p>
-<div align="center">Table 1: Data Type Specifications</div>
+        <h1 id="Understanding-GPR-File-Formats-Part-4-A-Comprehensive-Guide-to-EKKO-Data-Reading-and-Writing-Methods"><a href="#Understanding-GPR-File-Formats-Part-4-A-Comprehensive-Guide-to-EKKO-Data-Reading-and-Writing-Methods" class="headerlink" title="Understanding GPR File Formats, Part 4: A Comprehensive Guide to EKKO Data Reading and Writing Methods"></a>Understanding GPR File Formats, Part 4: A Comprehensive Guide to EKKO Data Reading and Writing Methods</h1><p>The <a target="_blank" rel="noopener" href="https://www.sensoft.ca/">EKKO</a> has earned global recognition as a pioneering designer and manufacturer of Ground Penetrating Radar (GPR) instruments and software. Their expertise in developing GPR systems extends to a wide range of applications. This includes utility locating, concrete scanning, structural assessments, and mining and quarrying. EKKO’s technology also plays a crucial role in forensics, archaeology, and geology, as well as in geotechnical and environmental assessments. Additionally, their systems are instrumental in glaciology, agriculture, and the detection of Unexploded Ordnance (UXO). EKKO’s commitment to innovation and versatility makes it a leader in the field, offering solutions that cater to a diverse array of industries and research areas.</p>
+<h2 id="EKKO-File-Format"><a href="#EKKO-File-Format" class="headerlink" title="EKKO File Format"></a>EKKO File Format</h2><p>EKKO’s GPR technology utilizes two specific file formats: the .hd for header information and the .dt1 for data. This format division, similar to the approach of MALÅ and IMPULSE, is characterized by several key features:<br>-Proprietary Design: These formats are custom-designed for seamless compatibility with EKKO’s unique hardware and software, ensuring a fluid and user-friendly experience.<br>-Header Information: Each dataset comes with a .hd file, which is rich in crucial metadata such as survey parameters, date, time, and geographic information. This metadata lays the groundwork for a comprehensive understanding of the data that follows.<br>-Data Composition: The .dt1 files serve as repositories for the raw radar data. They record the amplitude of the returned signals, offering a detailed information of the subsurface structures.<br>-Specialized Compatibility: While EKKO’s proprietary software, Sensor, is typically required to access and interpret these files, their design also allows for compatibility with other specialized GPR data processing software. This versatility ensures that EKKO’s formats can be utilized effectively across various platforms and applications.</p>
+<h2 id="Data-Reading-and-Writing"><a href="#Data-Reading-and-Writing" class="headerlink" title="Data Reading and Writing"></a>Data Reading and Writing</h2><p>In our upcoming discussion, we will delve into the specific methodologies for reading and writing EKKO’s file formats. The distinct structure of these files necessitates a tailored approach for each type. We have the .hd files, which contain the header information, and the .dt1 files, dedicated to storing the data.</p>
+<h3 id="Data-Reading"><a href="#Data-Reading" class="headerlink" title="Data Reading"></a>Data Reading</h3><p>EKKO’s data files are structured into two core components: Header Information and Data Composition. The Header Information is utilizing string values to encapsulate each data element. These individual pieces of information are distinctly separated by equal signs (=). For a detailed understanding of this organization, Table 1 below offers a thorough breakdown. In the Header Information of EKKO’s data files, the initial three lines play a pivotal role. The first line specifies the ‘type’ of data. Next, the ‘version’ of the data file is detailed in the second line. Finally, the third line captures the ‘survey date,’ anchoring the data in a specific temporal context. </p>
+<div align="center">Table 1: Data Type Specifications of Header Information</div>
 
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Data Types</th>
 <th style="text-align:left">Parameters</th>
 <th style="text-align:center">Discription</th>
-<th style="text-align:center">File Object Start Position</th>
-<th style="text-align:center">Standard Size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_tag</td>
+<td style="text-align:left">NUMBER OF TRACES</td>
+<td style="text-align:center">number of traces</td>
+</tr>
+<tr>
+<td style="text-align:left">NUMBER OF PTS/TRC</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">00</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_data</td>
-<td style="text-align:center">offset to data</td>
-<td style="text-align:center">02</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_nsamp</td>
-<td style="text-align:center">samples per scan</td>
-<td style="text-align:center">04</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_bits</td>
-<td style="text-align:center">bits per data word</td>
-<td style="text-align:center">06</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>short</code></td>
-<td style="text-align:left">rh_zero</td>
+<td style="text-align:left">TIMEZERO AT POINT</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">08</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_sps</td>
-<td style="text-align:center">scans per second</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_spm</td>
-<td style="text-align:center">scans per meter</td>
-<td style="text-align:center">14</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_mpm</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">18</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_position</td>
-<td style="text-align:center">starting point position (ns)</td>
-<td style="text-align:center">22</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_range</td>
+<td style="text-align:left">TOTAL TIME WINDOW</td>
 <td style="text-align:center">time duration (ns)</td>
-<td style="text-align:center">26</td>
-<td style="text-align:center">04</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_npass</td>
+<td style="text-align:left">STARTING POSITION</td>
+<td style="text-align:center">start position of survey</td>
+</tr>
+<tr>
+<td style="text-align:left">FINAL POSITION</td>
+<td style="text-align:center">stop position of survey</td>
+</tr>
+<tr>
+<td style="text-align:left">POSITION UNITS</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>char[]</code></td>
-<td style="text-align:left">rh_create</td>
-<td style="text-align:center">date created</td>
-<td style="text-align:center">32</td>
-<td style="text-align:center">04</td>
+<td style="text-align:left">NOMINAL FREQUENCY</td>
+<td style="text-align:center">central frequency of antenna</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>char[]</code></td>
-<td style="text-align:left">rh_modif</td>
-<td style="text-align:center">date modified</td>
-<td style="text-align:center">36</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_rgain</td>
+<td style="text-align:left">ANTENNA SEPARATIONN</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_nrgain</td>
-<td style="text-align:center">number of points in gain function</td>
-<td style="text-align:center">42</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_text</td>
+<td style="text-align:left">PULSER VOLTAGE (V)</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">44</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_ntext</td>
+<td style="text-align:left">NUMBER OF STACKS</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">46</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_proc</td>
+<td style="text-align:left">SURVEY MODE</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">48</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_nproc</td>
+<td style="text-align:left">STACKING TYPE</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_nchan</td>
-<td style="text-align:center">number of channels</td>
-<td style="text-align:center">52</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_epsr</td>
-<td style="text-align:center">relative permittivity</td>
-<td style="text-align:center">54</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_top</td>
-<td style="text-align:center">starting point position (m)</td>
-<td style="text-align:center">58</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>float</code></td>
-<td style="text-align:left">rh_depth</td>
-<td style="text-align:center">measured depth</td>
-<td style="text-align:center">62</td>
-<td style="text-align:center">04</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>char[]</code></td>
-<td style="text-align:left">rh_reserved</td>
+<td style="text-align:left">FREQUENCY</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">66</td>
-<td style="text-align:center">18</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_spp</td>
+<td style="text-align:left">GPR SERIAL#</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">84</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_linemun</td>
+<td style="text-align:left">RX SERIAL#</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">86</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>short</code></td>
-<td style="text-align:left">rh_start_x</td>
+<td style="text-align:left">DVL SERIAL#</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">88</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>short</code></td>
-<td style="text-align:left">rh_start_y</td>
+<td style="text-align:left">TX SERIAL#</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">90</td>
-<td style="text-align:center">02</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>short</code></td>
-<td style="text-align:left">rh_end_x</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">92</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>short</code></td>
-<td style="text-align:left">rh_end_y</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">94</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>char</code></td>
-<td style="text-align:left">rh_lineorder</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">96</td>
-<td style="text-align:center">01</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>char</code></td>
-<td style="text-align:left">rh_dtype</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">97</td>
-<td style="text-align:center">01</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>char[]</code></td>
-<td style="text-align:left">rh_antname</td>
-<td style="text-align:center">antenna name</td>
-<td style="text-align:center">98</td>
-<td style="text-align:center">14</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>unsigned short</code></td>
-<td style="text-align:left">rh_chanmask</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">112</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>char[]</code></td>
-<td style="text-align:left">rh_name</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">114</td>
-<td style="text-align:center">12</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>short</code></td>
-<td style="text-align:left">rh_chksum</td>
-<td style="text-align:center">check placeholder</td>
-<td style="text-align:center">126</td>
-<td style="text-align:center">02</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>char[]</code></td>
-<td style="text-align:left">rh_variable</td>
-<td style="text-align:center">variables</td>
-<td style="text-align:center">128</td>
-<td style="text-align:center">896</td>
+<td style="text-align:left">Processing</td>
+<td style="text-align:center">record each processing</td>
 </tr>
 </tbody>
 </table>
-<p>In the ensuing discussion, we explore the data composition. Our initial step involves bypassing the offset, followed by reading the data in accordance with the data type specified by the ‘info[‘rh_bits’]’ value, as detailed in the Header Information. The data is then transformed into a two-dimensional array, aligned with the ‘info[‘rh_nsamp’]’ value, also mentioned in the Header Information. A crucial aspect to highlight is that the first row of this 2D data delineates the trace indices, while the second row is characterized by uniform values, as depicted in <a href="#figure1">Figure 1</a>. Consequently, to ensure a precise analysis, it is imperative to remove these initial two rows from the 2D data.</p>
-<figure id="figure1"><br>  <img src="/Figure/Part1Fig/Fig1.png" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading by Using Python Code</figcaption><br></figure>
+<p>In the next segment of our exploration, we will delve into the specifics of data composition within EKKO’s GPR system. This journey begins with an examination of the GPR data’s storage format, which presents a unique structure compared to the MALÅ and IMPULSE systems. In EKKO’s system, the .dt1 file format integrates header information within its data composition, as illustrated in <a href="#figure1">Figure 1</a>.</p>
+<figure id="figure1"><br>  <img src="/Figure/Part4Fig/Fig2.png" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the Header Information within .dt File Reading by Using Python Code</figcaption><br></figure>
 
-<p>Finally, as depicted in <a href="#figure2">Figure 2</a>, we successfully read the complete data. Following this, we delve into the specifics of data:</p>
-<ul>
-<li>The spatial distance covered by the data can be calculated using data.shape[1]/float(info[‘rh_spm’]), which applies to the distance survey method.</li>
-<li>Alternatively, for the time survey method, the distance is determined by data.shape[1] / float(info[‘rh_sps’]).</li>
-<li>The time duration represented in the data is directly obtained from info[‘rh_range’].</li>
-<li>Similarly, the depth of the data is directly indicated by info[‘rh_depth’].</li>
-<li>Additionally, the relationship between the time duration and depth can be expressed through the next equation, providing a crucial link between these two key parameters.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</li>
-</ul>
-<figure id="figure2"><br>  <img src="/Figure/Part1Fig/Fig2.png" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Visualization of the Complete 2D Data Reading by Using Python Code</figcaption><br></figure>
+<p>Notably, the first 128 bytes of each trace represent the header information, followed by the raw GPR data, which occupies 2 * samples bytes. To gain deeper insights into this structure, refer to <a href="#figure2">Figure 2</a>, which details the components in the .dt1 file.</p>
+<figure id="figure2"><br>  <img src="/Figure/Part4Fig/Fig3.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Data Type Specifications of Data Composition</figcaption><br></figure>
 
-<p>The principal Python code utilized for reading DZT files is available for download from our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>.</p>
-<h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>By simply reversing the data reading process, we can facilitate the writing of the data. It is crucial to note that data intended for writing must be converted from a float fromat to an integer format. Additionally, the data type must correspond to the value specified by ‘info[‘rh_bits’]’. </p>
-<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>Ultimately, we are pleased to showcase a selection of our GPR datasets, amassing over 500 sets in total, meticulously gathered using GSSI radar system. This extensive dataset is available for download from our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>.</p>
-<figure id="figure3"><br>  <img src="/Figure/Part1Fig/Gallery.svg" width="800" height="auto" alt="Gallery" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 3: Gallery</figcaption><br></figure>
+<p>Crucially, understanding this format allows us to extract key data: the samples value can be determined by bypassing the initial 8 bytes. Additionally, to ascertain the total number of traces, one can locate the trace number from the first 4 bytes of the last trace’s data. </p>
+<p>Following our successful extraction of the complete dataset, as depicted in <a href="#figure3">Figure 3</a>, we now delve into detailing the specific characteristics of this data:<br>-The total spatial distance covered by the data is calculated through the formula float(info[‘FINAL POSITION’]) - float(info[‘STARTING POSITION’]), which applies to the distance survey method.<br>-The time duration represented within the data is conveniently obtained from info[‘TOTAL TIME WINDOW’].<br>-A pivotal aspect is the relationship between time duration and depth, which is defined by a specific equation. However, an important consideration in this calculation is the need for the input of relative permittivity. This crucial value, which must be supplied by the user, enables a more accurate interpretation of the depth information in relation to time.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</p>
+<figure id="figure3"><br>  <img src="/Figure/Part4Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 3: Visualization of the 2D Data Reading by Using Python Code</figcaption><br></figure>
+
+<p>The principal Python code for reading these files, is available in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We warmly invite you to join our channel, not just to access this valuable code, but also to connect with a community of enthusiasts and professionals in the field. It’s a space where like-minded individuals come together to share insights, exchange ideas, and collaborate on projects. </p>
+<h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>In our forthcoming segment, we will write data back into the EKKO system. A pivotal element in this process is the transformation of data formats. Precisely, data intended for writing back needs to be converted from a floating-point format to an integer format. Moreover, it’s imperative to accurately handle the first 128 bytes of each trace. This segment, representing the header information within the data composition, must be correctly formatted and integrated. </p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>We are excited to share that a diverse collection of GPR datasets is now available on our platform. However, our current repository of EKKO file data is limited, primarily serving as a means to test our Python code. We recognize the immense value that a more extensive range of EKKO format data would bring to our community. Therefore, we extend a cordial invitation to those who possess a substantial collection of EKKO data: please consider sharing it with us. Your contribution can significantly enhance the depth and variety of our resources.</p>
+<p>To explore these datasets or to access the Python code, we warmly welcome you to our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. Here, you’ll find everything readily available for download. Join our growing community and engage with a wealth of GPR data and technical resources at your fingertips.</p>
+<figure id="figure4"><br>  <img src="/Figure/Part4Fig/Gallery.svg" width="800" height="auto" alt="Gallery" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 4: Gallery</figcaption><br></figure>
       </section>
 
       
       
         <nav class="article-nav">
           
+          
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="/Figure/Part2Fig/MALA.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="/Figure/Part3Fig/IMPULSE.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2024/01/04/MALA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 2 (MALA)</h2>
+        <a href="/2024/01/04/IMPULSE/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 3 (IMPULSE)</h2>
         </a>
       
-      <div class="card-text--row">Newer</div>
+      <div class="card-text--row">Older</div>
     </div>
   </article>
 </div>
-          
           
         </nav>
       

@@ -118,7 +118,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-01-11T17:08:58.325Z" itemprop="dateUpdated">2024-01-11</time>
+              <time  class="article-updated" datetime="2024-01-12T14:01:08.546Z" itemprop="dateUpdated">2024-01-12</time>
             </h2>
           
           
@@ -346,9 +346,9 @@
 </tbody>
 </table>
 <p>In the upcoming section of our discussion, we turn our attention to the details of data composition within IMPULSE’s GPR system. The initial step in this exploration involves deciphering the storage format of the GPR data. This is achieved by examining the info[‘DATA VERSION’] value within the info dictionary. A value of ‘16’ indicates that the data is stored in an int16 format, while a ‘32’ denotes an int32 format. Once the format is determined, the next step involves transforming this data into a 2D array. This transformation is carefully guided by two specific values: info[‘SAMPLES’] and info[‘LAST TRACE’] found in the info dictionary. </p>
-<figure id="figure1"><br>  <img src="/Figure/Part3Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading Using Python Code</figcaption><br></figure>
+<p>Following our successful extraction of the complete dataset, as depicted in <a href="#figure1">Figure 1</a>, we now delve into detailing the specific characteristics of this data:<br>-The total spatial distance covered by the data is calculated through the formula data.shape[1] * float(info[‘DISTANCE INTERVAL’]), which applies to the distance survey method.<br>-The time duration represented within the data is conveniently obtained from info[‘TIMEWINDOW’].<br>-A pivotal aspect is the relationship between time duration and depth, which is defined by a specific equation. However, an important consideration in this calculation is the need for the input of relative permittivity. This crucial value, which must be supplied by the user, enables a more accurate interpretation of the depth information in relation to time.<br>$$\mathrm{1.5e^8 \times info[‘rh\_range’] \times 1e^{-9} / \sqrt{info[‘rh\_epsr’]}}$$</p>
+<figure id="figure1"><br>  <img src="/Figure/Part3Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Visualization of the 2D Data Reading by Using Python Code</figcaption><br></figure>
 
-<p>Following our successful extraction of the complete dataset, as depicted in Figure 1, we now delve into detailing the specific characteristics of this data:<br>-The total spatial distance covered by the data is calculated through the formula data.shape[1] * float(info[‘DISTANCE INTERVAL’]), which applies to the distance survey method.<br>-The time duration represented within the data is conveniently obtained from info[‘TIMEWINDOW’].<br>-A pivotal aspect is the relationship between time duration and depth, which is defined by a specific equation. However, an important consideration in this calculation is the need for the input of relative permittivity. This crucial value, which must be supplied by the user, enables a more accurate interpretation of the depth information in relation to time.</p>
 <p>The principal Python code for reading these files, is available in our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We warmly invite you to join our channel, not just to access this valuable code, but also to connect with a community of enthusiasts and professionals in the field. It’s a space where like-minded individuals come together to share insights, exchange ideas, and collaborate on projects. </p>
 <h3 id="Data-Writting"><a href="#Data-Writting" class="headerlink" title="Data Writting"></a>Data Writting</h3><p>In our next discussion, we’ll explore how to reverse the data reading process, enabling the efficient writing of data back into IMPULSE files. A crucial aspect of this process is the need for a format transformation. Specifically, data prepared for writing should be converted from a floating-point format to an integer format. This step is essential to ensure the integrity and compatibility of the data with the IMPULSE system. Additionally, it’s vital to ensure that the data type chosen for writing corresponds exactly with the specifications outlined in the info[‘DATA VERSION’] value.</p>
 <h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>We are excited to announce the availability of an extensive collection of GPR datasets on our platform. Over 20 datasets have been assembled using the IMPULSE GPR system, showcasing a wide array of subsurface imaging data. To access these datasets, we warmly invite you to visit our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>,  where they are readily available for download. </p>
@@ -358,6 +358,22 @@
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="/Figure/Part4Fig/EKKO.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2024/01/05/EKKO/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">GPR File Formats, Part 4 (EKKO)</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -410,7 +426,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>3</span>
+        <span>4</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -456,7 +472,7 @@
       
         <li class="categorys-list-item">
           <a href="/categories/Algorithm/">
-            Algorithm (3)
+            Algorithm (4)
           </a>
         </li>
       
