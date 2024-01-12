@@ -220,6 +220,9 @@ q:after {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  overflow: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 img {
   max-width: 100%;
@@ -865,7 +868,9 @@ html.show-mobile-nav .navbar-list {
 .markdown-body table {
   width: 100%;
   border-collapse: collapse;
-  border-spacing: 0;
+  border-spacing: 10;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .markdown-body table th {
   font-weight: bold;
@@ -880,7 +885,7 @@ html.show-mobile-nav .navbar-list {
 .markdown-body hr {
   height: 0;
   margin: 15px 0;
-  overflow: hidden;
+  overflow: auto;
   background: transparent;
   border: 0;
   border-bottom: 1px solid var(--theme-border-primary);
@@ -916,7 +921,7 @@ html.show-mobile-nav .navbar-list {
   position: relative;
   padding-top: 56.25%;
   height: 0;
-  overflow: hidden;
+  overflow: auto;
   overflow: hidden;
   border-radius: var(--soft-small-radius);
   background-color: var(--theme-bg-primary);
@@ -943,6 +948,10 @@ html.show-mobile-nav .navbar-list {
   padding: 0.1em 0.3em;
   background-color: var(--theme-bg-shadow);
 }
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .markdown-body details {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -950,7 +959,7 @@ html.show-mobile-nav .navbar-list {
   border: 1px solid var(--theme-border-secondary);
   color: var(--theme-text-primary);
   font-size: 14px;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0 2px 4px -2px rgba(0,0,0,0.149);
 }
 .markdown-body details[open] summary {
@@ -1077,7 +1086,9 @@ html.show-mobile-nav .navbar-list {
   margin: 0;
   width: 100%;
   max-width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .markdown-body figure.highlight table td {
   border: none;
@@ -1216,7 +1227,7 @@ html.show-mobile-nav .navbar-list {
   flex: 0 0 46px;
 }
 .content-container.post-container .article-info .page-link-container .link-item > a div {
-  overflow: hidden;
+  overflow: auto;
   line-height: var(--font-base-lh);
 }
 .content-container.post-container .article-info .page-link-container .link-item > a h4 {
