@@ -25,7 +25,7 @@
 
   
 
-  <title>message | Zues GPR</title>
+  <title>Conventional Pre-Processing Algorithms | Zues GPR</title>
 
   
 
@@ -56,9 +56,9 @@
   <div class="root-container">
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(/Figure/Part9Fig/preprocessing.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,37 +106,130 @@
 
   
   
-
-  
-  
     <div class="header-content">
-      <div class="post-text layout-block layout-padding">
-        <h1 class="title-wrap">message</h1>
-        
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">Conventional Pre-Processing Algorithms</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Zeus GPR</strong>
+            <span>Submitted at</span>
+            <time  class="article-date" datetime="2024-01-15T17:00:00.000Z" itemprop="datePublished">2024-01-15</time>
+          </h2>
+          
+          
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/Algorithm/">📒 Algorithm</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Data-Processing/">🏷️ Data Processing</a></li>
+  
+</ul>
+        </div>
       </div>
     </div>
+  
+
+  
   
   
 </header>
 
-    <!-- 分页(其他自定义页面) -->
+    <!-- 文章 -->
 
-<!-- 自定义页面 -->
-
+<!-- 文章内容 -->
 <div class="body-container">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       
+      
+      
+      
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>front-matter<br>layout: messages</p>
+        <h1 id="Conventional-Pre-Processing-Algorithms-for-GPR-Data"><a href="#Conventional-Pre-Processing-Algorithms-for-GPR-Data" class="headerlink" title="Conventional Pre-Processing Algorithms for GPR Data"></a>Conventional Pre-Processing Algorithms for GPR Data</h1><p>The preprocessing of collected GPR data is essential for its accurate interpretation. This preprocessing typically involves several conventional processes, each designed to enhance the clarity of the data. These processes include background removal, horizontal filtering, longitudinal filtering, and depth gain, each serving a specific purpose in data refinement.<br>-Background Removal: This process is for eliminating air-ground coupled waves. These are unwanted signal components that can mask or distort the true subsurface reflections in GPR data.<br>-Horizontal Filtering: Used to eradicate potential horizontal stripe clutter. Horizontal stripes in the GPR data often result from systematic noise or interference and can obscure or confuse the true reflection signals.<br>-Longitudinal Filtering: This technique focuses on amplifying signals of interest while simultaneously suppressing other unrelevant signals. By doing so, it enhances the detection and visibility of specific subsurface features.<br>-Depth Gain: As GPR signals penetrate deeper into the subsurface, they tend to weaken. Depth gain compensates for this loss of signal strength, amplifying deeper signals to ensure consistent visibility and interpretability throughout varying subsurface depths.</p>
+<p>Each of these preprocessing steps is integral to the overall effectiveness of GPR data analysis, ensuring that the final interpreted data is as accurate and informative as possible.</p>
+<h2 id="Background-Removal"><a href="#Background-Removal" class="headerlink" title="Background Removal"></a>Background Removal</h2><p>Air-ground coupled waves present a significant challenge in the processing of GPR data. These waves arise due to the air gap between the GPR antenna and the ground surface, resulting in strong echo signals within the GPR image. Such echoes can severely impede the accurate detection and identification of subsurface targets.</p>
+<p>The elimination of these air-ground coupled waves is typically accomplished through various signal processing and data preprocessing techniques. Popular algorithms employed for this purpose include filtering, inter-trace equalization, and sliding window inter-trace equalization methods. The primary objective of these methods is to refine the quality of GPR images, thereby enhancing the precision and efficacy of detecting and identifying underground structures.</p>
+<p>However, these methods come with their own sets of challenges. The filtering method, for instance, demands manual input in its computations, while inter-trace equalization can introduce artifacts into the GPR data. Consequently, the low-rank-sparse method for wave removal shows distinct advantages. Techniques like Robust Principal Component Analysis (RPCA) and Robust Nonnegative Matrix Factorization (RNMF) are exemplary in this regard, offering a more effective and less intrusive means of mitigating the impact of air-ground coupled waves on GPR data interpretation.</p>
+<p>In the upcoming discussion, I will utilize raw GPR data, as depicted in <a href="#figure1">Figure 1</a>, collected using the GSSI GPR system. These illustrations will serve to highlight the distinct differences and impacts of each processing step, providing a clear and practical demonstration of how these methods enhance and refine GPR data analysis.</p>
+<figure id="figure1"><br>  <img src="/Figure/Part9Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: The Raw GPR Data Collected using the GSSI GPR System</figcaption><br></figure>
+
+<h3 id="Inter-trace-Equalization"><a href="#Inter-trace-Equalization" class="headerlink" title="Inter-trace Equalization"></a>Inter-trace Equalization</h3><p>The inter-trace equalization method in GPR data processing boasts the benefit of simplicity and speed in its calculations. However, it’s not without its drawbacks. A notable limitation of this method is its inability to thoroughly eliminate background noise, often resulting in a less clean removal. Additionally, it tends to introduce artifacts into the processed data, which can subsequently impede the clarity and accuracy of data interpretation. These factors should be carefully considered when choosing the appropriate method for GPR data analysis.</p>
+<p>$$E_{i,j} = D_{i,j} - \frac{\sum_{j = 1}^m D_{i,j}} {m}$$</p>
+<h3 id="Sliding-Window-Inter-trace-Equalization"><a href="#Sliding-Window-Inter-trace-Equalization" class="headerlink" title="Sliding Window Inter-trace Equalization"></a>Sliding Window Inter-trace Equalization</h3><p>The sliding window inter-trace equalization method offers a partial solution to the challenges of less clean removal and artifact introduction often encountered in GPR data processing. While it somewhat mitigates these issues, it does so at the expense of event continuity, leading to a scenario where the detected events may appear discontinuous.</p>
+<p>$$E_{i,j} = D_{i,j} - \frac{\sum_{j = j_c-\frac{w}{2}}^{j_c-\frac{w}{2}} D_{i,j}} {w}, j_c \in [\frac{w}{2},len(J)-\frac{w}{2}]$$</p>
+<h3 id="Robust-Nonnegative-Matrix-Factorization"><a href="#Robust-Nonnegative-Matrix-Factorization" class="headerlink" title="Robust Nonnegative Matrix Factorization"></a>Robust Nonnegative Matrix Factorization</h3><p>The observational GPR data, denoted as D, can be effectively decomposed into two distinct components: the low-rank components, represented as L, and the sparse components, symbolized as S.</p>
+<p>$$ \mathbf{X} = \mathbf{WH} + \mathbf{S} $$</p>
+<p>$$\min_{\mathbf{W},\mathbf{H},\mathbf{S}} = \parallel \mathbf{X} - \mathbf{WH} - \mathbf{S} \parallel_F^2 + \lambda \parallel \mathbf{S}\parallel_1,\quad s.t.\mathbf{W} \ge 0,\mathbf{H} \ge 0$$</p>
+<p>Drawing upon the principles of the Alternating Direction Method of Multipliers (ADMM) algorithm, we derive the following algorithmic flow:</p>
+<p>$$ \mathbf{W} _{ij} \leftarrow [ \frac{|((\mathbf{S} - \mathbf{X}) \mathbf{H} ^T) _{ij}| - ((\mathbf{S} - \mathbf{X}) \mathbf{H} ^T) _{ij}}{2 (\mathbf{WH} \mathbf{H} ^T) _{ij}} ] \mathbf{W} _{ij} $$</p>
+<p>$$ \mathbf{H} _{ij} \leftarrow [ \frac{|(\mathbf{W} ^T(\mathbf{S} - \mathbf{X})) _{ij}| - (\mathbf{W} ^T (\mathbf{S} - \mathbf{X})) _{ij}}{2 ( \mathbf{W} ^T \mathbf{WH}) _{ij}} ] \mathbf{H} _{ij} $$</p>
+<p>Standardize W and H,</p>
+<p>$$\mathbf{W} _{ij} \leftarrow \frac{\mathbf{W} _{ij}}{\sqrt{\sum _{r = 1} ^n W _{kj} ^2}}$$</p>
+<p>$$\mathbf{H} _{ij} \leftarrow \mathbf{H} _{ij} \sqrt{ \sum _{r = 1} ^n W _{ki} ^2 }$$</p>
+<p>$$\mathbf{S} \leftarrow \mathrm{shrink}(\mathbf{X} - \mathbf{WH}, \frac{\lambda}{2})$$</p>
+<p>where,</p>
+<p>$$\mathrm{shrink} (\mathbf{X}, \tau) = \mathbf{X} - \tau , \quad \mathbf{X} &gt; \tau $$</p>
+<p>$$\mathrm{shrink} (\mathbf{X}, \tau) = 0 , \quad | \mathbf{X} | \le \tau $$</p>
+<p>$$\mathrm{shrink} (\mathbf{X}, \tau) = \mathbf{X} + \tau , \quad \mathbf{X} &lt; \tau $$</p>
+<p>The results processed by the three distinct methods are showcased in <a href="#figure2">Figure 2</a>, <a href="#figure3">Figure 3</a>, and <a href="#figure4">Figure 4</a>, respectively. Each figure corresponds to one of the methods, providing a visual comparison and illustrating the specific outcomes and differences achieved by each technique.</p>
+<figure id="figure2"><br>  <img src="/Figure/Part9Fig/Fig2.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: The Result Processed by Inter-trace Equalization Method</figcaption><br></figure>
+
+<figure id="figure3"><br>  <img src="/Figure/Part9Fig/Fig3.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 3: The Result Processed by Sliding Window Inter-trace Equalization Method</figcaption><br></figure>
+
+<figure id="figure4"><br>  <img src="/Figure/Part9Fig/Fig4.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 4: The Result Processed by Robust Nonnegative Matrix Factorization Method</figcaption><br></figure>
+
+<h2 id="Filtering"><a href="#Filtering" class="headerlink" title="Filtering"></a>Filtering</h2><p>After applying the horizontal filtering method to the GPR data which post-background removal, as illustrated in <a href="#figure5">Figure 5</a>, it’s noticeable that the residual air-ground coupled waves are effectively suppressed. Subsequently, the implementation of the Longitudinal Filtering method has resulted in the amplification of the signals of interest, as clearly depicted in <a href="#figure6">Figure 6</a>. These steps demonstrate the effectiveness of each filtering technique in refining GPR data for more accurate analysis.</p>
+<figure id="figure5"><br>  <img src="/Figure/Part9Fig/Fig5.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 5: The Result Processed by Horizontal Filtering</figcaption><br></figure>
+
+<figure id="figure6"><br>  <img src="/Figure/Part9Fig/Fig6.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 6: The Result Processed by Robust Longitudinal Filtering</figcaption><br></figure>
+
+<h2 id="Depth-Gain"><a href="#Depth-Gain" class="headerlink" title="Depth Gain"></a>Depth Gain</h2><p>In the final stage of preprocessing, we apply depth gain to the data, thereby enhancing the visibility of deeper structures. The resultant preprocessed GPR data is presented in <a href="#figure7">Figure 7</a>. A comparison with <a href="#figure1">Figure 1</a> reveals a marked improvement in clarity, particularly in the visualization of anomalous bodies within the GPR data.</p>
+<figure id="figure7"><br>  <img src="/Figure/Part9Fig/Fig7.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 6: The Result Processed by Depth Gain</figcaption><br></figure>
+
+<p>For those interested in the Python code used for automating this preprocessing sequence, it is available for download via our <a target="_blank" rel="noopener" href="https://t.me/Nephilim_GPR">Telegram channel</a>. We invite readers who are keen to delve deeper into this subject to join our community and explore further.</p>
+<p>Moreover, for tasks involving the processing of large volumes of data, the <a target="_blank" rel="noopener" href="https://zeusgpr.lol/2024/01/14/MultiProcess/">multiprocessing technology</a>, as demonstrated earlier, can be employed for parallel processing. This technologysignificantly boosts the efficiency of data processing.</p>
 
       </section>
 
       
       
+        <nav class="article-nav">
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="/Figure/Part8Fig/Multiprocessing.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2024/01/14/MultiProcess/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Python Multiprocessing and JIT Acceleration</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
 
-      
-      
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
     </div>
     <div class="widget-info">
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -173,6 +266,8 @@
     </div>
   </div>
 </section>
+
+      
 
       
 <section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -236,7 +331,6 @@
     </div>
   </article>
 </div>
-
 
     <!-- footer container -->
 <footer id="footer" class="footer">
