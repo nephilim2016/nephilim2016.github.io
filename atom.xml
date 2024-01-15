@@ -41,6 +41,30 @@
   </entry>
   
   <entry>
+    <title>Stacking PDS4 Files into 2D GPR Data</title>
+    <link href="http://example.com/2024/01/14/PDS4Stack/"/>
+    <id>http://example.com/2024/01/14/PDS4Stack/</id>
+    <published>2024-01-14T17:00:00.000Z</published>
+    <updated>2024-01-14T17:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Stacking-PDS4-Files-into-2D-GPR-Data"><a href="#Stacking-PDS4-Files-into-2D-GPR-Data" class="headerlink" title="Stacking PDS4 Files into 2D GPR Data"></a>Stacking PDS4 Files into 2D GPR Data</h1><p>The PDS4 files, gathered by the Lunar Penetrating Radar (LPR) over specified periods, often contain a substantial number of repetitive acquisitions as shownd in <a href="#figure1">Figure 1</a>. Consequently, to construct the real 2D GPR data, it’s essential to perform stacking across various time periods within these acquisitions. Relying on visual inspection methods for stacking can be exceedingly time-consuming and prone to inaccuracies. To address this issue, it’s imperative to develop an algorithm that automates the process of stacking data from multiple PDS4 files. This automated approach not only streamlines the data processing but also enhances the precision of the final stacked GPR data.</p><figure id="figure1"><br>  <img src="/Figure/Part7Fig/Fig1.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 1: Radargram for Segmented Channel 2B Data</figcaption><br></figure><h2 id="Efficient-Data-Stacking"><a href="#Efficient-Data-Stacking" class="headerlink" title="Efficient Data Stacking"></a>Efficient Data Stacking</h2><p>The efficient algorithm for data stacking is primarily executed through a series of steps. The process begins with the initial step of bypassing the direct wave portion of the data, as its energy is excessively high, a scenario clearly depicted in <a href="#figure2">Figure 2</a>. The subsequent step involves computing the derivative of the data in the depth-direction using the Sobel filter. This step is crucial for removing horizontal lines, a transformation that is evident in <a href="#figure3">Figure 3</a>. Following this, the third step is to denoise the output of the Sobel operation. This denoising is vital for reducing random noise, thereby refining the data for subsequent processing, as illustrated in <a href="#figure4">Figure 4</a>. The final step in this algorithm is the careful selection of traces based on a predefined threshold, a crucial process highlighted in <a href="#figure5">Figure 5</a>. Each of these steps collectively contributes to the overall efficacy and precision of the data stacking procedure.</p><figure id="figure2"><br>  <img src="/Figure/Part7Fig/Fig2.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 2: Bypassing the Direct Wave</figcaption><br></figure><figure id="figure3"><br>  <img src="/Figure/Part7Fig/Fig3.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 3: Sobel Filter</figcaption><br></figure><figure id="figure4"><br>  <img src="/Figure/Part7Fig/Fig4.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 4: Reducing Random Noise</figcaption><br></figure><figure id="figure5"><br>  <img src="/Figure/Part7Fig/Fig5.png" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 5: Selection of Traces Based on a Predefined Threshold</figcaption><br></figure><h2 id="Data-Stacking-Results"><a href="#Data-Stacking-Results" class="headerlink" title="Data Stacking Results"></a>Data Stacking Results</h2><p>Upon the selection of traces, the data is organized and stacked according to the sequence of time periods. This step results in the formation of the real 2D Lunar Penetrating Radar (LPR) data, as illustrated in <a href="#figure6">Figure 6</a>. For those interested in the Python code that facilitates this automated data stacking, it is readily available for download through our <a href="https://t.me/Nephilim_GPR">Telegram channel</a>. We warmly welcome readers who are eager to immerse themselves further into this fascinating subject to join our community, where they can engage in deeper exploration and discussion.</p><figure id="figure6"><br>  <img src="/Figure/Part7Fig/Fig6.svg" width="600" height="auto" alt="About" style="display:block; margin:auto;" /><br>  <figcaption style="text-align:center;">Figure 6: Rhe Real 2D Lunar Penetrating Radar (LPR) Data</figcaption><br></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Stacking-PDS4-Files-into-2D-GPR-Data&quot;&gt;&lt;a href=&quot;#Stacking-PDS4-Files-into-2D-GPR-Data&quot; class=&quot;headerlink&quot; title=&quot;Stacking PDS4 Files </summary>
+      
+    
+    
+    
+    <category term="Algorithm" scheme="http://example.com/categories/Algorithm/"/>
+    
+    
+    <category term="Data Processing" scheme="http://example.com/tags/Data-Processing/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python Multiprocessing and JIT Acceleration</title>
     <link href="http://example.com/2024/01/14/MultiProcess/"/>
     <id>http://example.com/2024/01/14/MultiProcess/</id>
